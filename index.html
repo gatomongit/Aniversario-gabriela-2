@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>1 Año con Gabriela</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top, #1f1c2c, #928dab);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    .heart {
+      width: 100px;
+      height: 90px;
+      background-color: red;
+      position: relative;
+      transform: rotate(-45deg);
+      animation: heartbeat 1s infinite;
+      margin: 30px auto;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 90px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1) rotate(-45deg); }
+      25% { transform: scale(1.1) rotate(-45deg); }
+      50% { transform: scale(1) rotate(-45deg); }
+      100% { transform: scale(1.1) rotate(-45deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message {
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: 30px;
+      padding-top: 20px;
+      font-style: italic;
+      opacity: 0;
+      transition: opacity 3s ease;
+    }
+
+    .show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Feliz primer aniversario, Gabriela Solares 💖</h1>
+    <div class="heart"></div>
+    <p id="typingText"></p>
+    <div class="message" id="deepMessage">
+      Gabriela, este año contigo ha sido el más hermoso de mi vida.<br>
+      Gracias por cada risa, por tu luz, por tu amor...<br>
+      Hoy celebramos no solo un año, sino todo lo que está por venir.
+    </div>
+  </div>
+
+  <script>
+    const text = "Un año contigo ha sido un viaje de amor, de descubrimientos, de ternura infinita.";
+    const typingText = document.getElementById("typingText");
+    let i = 0;
+
+    function typeWriter() {
+      if (i < text.length) {
+        typingText.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      } else {
+        document.getElementById("deepMessage").classList.add("show");
+      }
+    }
+
+    window.onload = () => {
+      typeWriter();
+    };
+  </script>
+</body>
+</html>
